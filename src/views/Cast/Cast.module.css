@@ -1,0 +1,114 @@
+@media screen and (max-width: 767px) {
+  .cast {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+@media screen and (min-width: 768px) {
+  .cast {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: -15px;
+    padding: 0;
+    text-align: center;
+    height: 370px;
+    width: 80%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .castActive {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+    text-align: center;
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+.castItem {
+  width: 120px;
+  height: 150px;
+  margin: 15px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.castImg {
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.name {
+  margin: 0px;
+  font-size: 16px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 7px;
+}
+
+.character {
+  margin: 0;
+  font-size: 14px;
+  color: #fff;
+}
+.overlay {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 8px;
+}
+.overlay::before {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.7);
+  transform: translateY(100%);
+  transition: background 350ms ease-in-out, transform 350ms ease-in-out;
+}
+.castItem:hover .overlay,
+.castItem:focus .overlay {
+  transform: translateY(0);
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.info {
+  position: absolute;
+  align-items: center;
+  padding: 40px 10px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: translateY(100%);
+  transition: background 350ms ease-in-out, transform 350ms ease-in-out;
+}
+.castItem:hover .info,
+.castItem:focus .info {
+  opacity: 1;
+  transform: translateY(0);
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.loadMore {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  align-content: center;
+  align-items: center;
+  height: 46px;
+  padding: 10px 26px;
+  border: none;
+  background: linear-gradient(to right, rgb(96, 255, 255), rgb(0, 162, 255));
+  border-radius: 30px;
+  color: #fff;
+  cursor: pointer;
+}
