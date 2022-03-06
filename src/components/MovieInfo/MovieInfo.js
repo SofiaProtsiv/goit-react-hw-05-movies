@@ -1,54 +1,47 @@
-import { useState, useEffect, Suspense, lazy } from 'react';
 import {
   NavLink,
-  useParams,
   useRouteMatch,
   Switch,
   Route,
   useHistory,
-  useLocation,
-  Link,
-} from 'react-router-dom';
-import apiService from '../../servises/API';
-import style from './MovieDetailsPage.module.css';
-import LoaderComponent from '../../components/Loader';
-const Cast = lazy(() => import('../Cast/Cast' /* webpackChunkName: "cast"*/));
+} from "react-router-dom";
+import { useState, useEffect, Suspense, lazy } from "react";
+import style from "./MovieDetailsPage.module.css";
+import LoaderComponent from "../Loader";
+
+const Cast = lazy(() =>
+  import("../../pages/Cast" /* webpackChunkName: "cast"*/)
+);
 const Reviews = lazy(() =>
-  import('../Reviews' /* webpackChunkName: "reviews"*/),
+  import("../../pages/Reviews" /* webpackChunkName: "reviews"*/)
 );
 
-export default function MovieDetailsPage() {
-  const [movie, setMovie] = useState([]);
-  const location = useLocation();
-  const { url, path } = useRouteMatch();
-  const [prevLocation, setPrevLocation] = useState(
-    location?.state?.from ?? '/',
-  );
-  console.log(location);
-  let { movieID } = useParams();
+export default function MovieInfo({ movie }) {
+  const history = useHistory();
+  const match = useRouteMatch();
+  const [back, setBack] = useState();
+  const backDate = history.location.state;
+
   useEffect(() => {
-    apiService
-      .getMovieById(movieID)
-      .then(info => {
-        setMovie(info);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, [movieID]);
+    backDate && setBack(backDate);
+  }, [backDate]);
+
+  const GoBack = () => {
+    history.push(back?.from.location);
+  };
 
   return (
     <>
-      <Link to={prevLocation} className={style.button}>
-        Go back
-      </Link>
+      <button onClick={GoBack} type="button" className={style.button}>
+        <span>Go back</span>
+      </button>
 
       <div className={style.movies}>
         <img
           src={
             movie.poster_path
               ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
-              : 'https://images.creativemarket.com/0.1.0/ps/7414066/1820/1214/m1/fpnw/wm1/logo-design-for-movie-production-company-01-.jpg?1575502358&s=c37b3e6a8863b415070b669f6c8a457c'
+              : "https://images.creativemarket.com/0.1.0/ps/7414066/1820/1214/m1/fpnw/wm1/logo-design-for-movie-production-company-01-.jpg?1575502358&s=c37b3e6a8863b415070b669f6c8a457c"
           }
           alt={movie.title}
           width="250"
@@ -66,7 +59,7 @@ export default function MovieDetailsPage() {
             <>
               <h3 className={style.title}>Genres</h3>
               <ul className={style.genre}>
-                {movie.genres.map(genre => (
+                {movie.genres.map((genre) => (
                   <li key={genre.id}>{genre.name}</li>
                 ))}
               </ul>
@@ -79,7 +72,9 @@ export default function MovieDetailsPage() {
         <p className={style.information}>Additional information</p>
 
         <NavLink
-          to={`${url}/cast`}
+          to={{
+            pathname: `${match.url}/cast`,
+          }}
           className={style.link}
           activeClassName={style.activeLink}
         >
@@ -87,7 +82,9 @@ export default function MovieDetailsPage() {
         </NavLink>
 
         <NavLink
-          to={`${url}/reviews`}
+          to={{
+            pathname: `${match.url}/reviews`,
+          }}
           className={style.link}
           activeClassName={style.activeLink}
         >
@@ -97,13 +94,14 @@ export default function MovieDetailsPage() {
 
       <Suspense fallback={<LoaderComponent />}>
         <Switch>
-          <Route path={`${path}/cast`}>
-            <Cast />
-          </Route>
-
-          <Route path={`${path}/reviews`}>
-            <Reviews />
-          </Route>
+          <Route
+            path={`${match.path}/cast`}
+            render={(props) => <Cast {...props} />}
+          />
+          <Route
+            path={`${match.path}/reviews`}
+            render={(props) => <Reviews {...props} />}
+          />
         </Switch>
       </Suspense>
     </>

@@ -1,13 +1,13 @@
-import { NavLink } from 'react-router-dom';
-import style from './Navigation.module.css';
+import { NavLink } from "react-router-dom";
+import style from "./Navigation.module.css";
 
 export default function Navigation() {
   return (
     <header className={style.header}>
       <nav className={style.nav}>
-        <a href="/" className={style.logo}>
+        <NavLink to="/" className={style.logo}>
           Filmoteka
-        </a>
+        </NavLink>
         <div>
           <NavLink
             exact

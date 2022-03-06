@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import apiService from '../../servises/API';
-import style from './Reviews.module.css';
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import apiService from "../../servises/API";
+import style from "./Reviews.module.css";
 
 export default function Reviews() {
   const [reviews, setReviews] = useState([]);
@@ -10,13 +10,13 @@ export default function Reviews() {
   useEffect(() => {
     apiService
       .getMovieReview(movieID)
-      .then(results => {
+      .then((results) => {
         if (results.length === 0) {
           return;
         }
         setReviews(results);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }, [movieID]);
@@ -24,7 +24,7 @@ export default function Reviews() {
   return (
     <>
       <ul className={style.review}>
-        {reviews.map(review => (
+        {reviews.map((review) => (
           <li key={review.id} className={style.item}>
             <h2 className={style.author}>{review.author}</h2>
             <p>{review.content}</p>
