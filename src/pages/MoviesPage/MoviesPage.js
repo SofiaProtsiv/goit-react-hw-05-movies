@@ -5,6 +5,8 @@ import apiService from "../../servises/API";
 import Searchbar from "../../components/Searchbar";
 import MoviePreview from "../../components/MoviePreview";
 import style from "./MoviesPage.module.css";
+import Footer from "../../components/Footer";
+import Container from "../../components/Container";
 
 export default function MoviesPage() {
   const history = useHistory();
@@ -16,12 +18,8 @@ export default function MoviesPage() {
   const page = new URLSearchParams(location.search).get("page") ?? 1;
 
   useEffect(() => {
-    if (location.search === "") {
-      return;
-    }
-
+    if (location.search === "") return;
     const newSearch = new URLSearchParams(location.search).get("query");
-
     setQuery(newSearch, page);
   }, [location.search, page]);
 
@@ -49,27 +47,32 @@ export default function MoviesPage() {
     history.push({ ...location, search: `query=${newSearch}&page=1` });
   };
 
-  const onHandlePage = (event, page) => {
+  const onHandlePage = (page) => {
     history.push({ ...location, search: `query=${query}&page=${page}` });
   };
 
   return (
     <>
-      <Searchbar onHandleSubmit={searchImages} />
+      <Container>
+        <main className={style.main}>
+          <Searchbar onHandleSubmit={searchImages} />
 
-      <MoviePreview movies={movies} location={location} />
+          <MoviePreview movies={movies} location={location} />
 
-      {totalPage > 1 && (
-        <Pagination
-          className={style.pagination}
-          count={totalPage}
-          onChange={onHandlePage}
-          page={Number(page)}
-          showFirstButton
-          showLastButton
-          size="large"
-        />
-      )}
+          {totalPage > 1 && (
+            <Pagination
+              className={style.pagination}
+              count={totalPage}
+              onChange={onHandlePage}
+              page={Number(page)}
+              showFirstButton
+              showLastButton
+              size="large"
+            />
+          )}
+        </main>
+      </Container>
+      <Footer />
     </>
   );
 }

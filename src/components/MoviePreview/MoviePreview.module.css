@@ -1,17 +1,13 @@
 .moviesList {
   display: grid;
   max-width: calc(100vw - 35px);
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   grid-gap: 25px;
-  margin: 0 50px;
-  padding: 0px 0px 30px;
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
-@media screen and (max-width: 767px) {
-  .moviesList {
-    margin: 0;
-  }
-}
+
 @media screen and (min-width: 1024px) {
   .moviesList {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import style from "./Navigation.module.css";
-
+import Container from "../Container";
 export default function Navigation() {
   return (
     <header className={style.header}>

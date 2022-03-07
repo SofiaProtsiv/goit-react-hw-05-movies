@@ -2,20 +2,24 @@
   .cast {
     width: 100%;
     margin: 0 auto;
+    padding: 0;
+  }
+  .castItem {
+    width: 300px;
+    height: 80px;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 15px;
   }
 }
 @media screen and (min-width: 768px) {
   .cast {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    margin: -15px;
+    justify-content: space-between;
     padding: 0;
-    text-align: center;
-    height: 370px;
-    width: 80%;
+    list-style: none;
     margin: 0 auto;
-    overflow: hidden;
   }
   .castActive {
     display: flex;
@@ -27,36 +31,56 @@
     width: 80%;
     margin: 0 auto;
   }
+  .castItem {
+    width: 250px;
+    height: 80px;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 15px;
+  }
 }
-.castItem {
-  width: 120px;
-  height: 150px;
-  margin: 15px;
-  overflow: hidden;
-  cursor: pointer;
+@media screen and (min-width: 1024px) {
+  .cast {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+  }
+  .castItem {
+    width: 300px;
+    height: 80px;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 15px;
+  }
 }
 
 .castImg {
-  height: 180px;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 8px;
+  display: block;
+  width: 100px;
+  max-width: 100px;
+  background-color: rgb(168, 168, 168);
+  border-radius: 7px;
+  margin: 0;
 }
 
 .name {
-  margin: 0px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 900;
-  color: #fff;
-  margin-bottom: 7px;
+  color: black;
+  margin: 18px 0 5px 20px;
 }
 
 .character {
   margin: 0;
-  font-size: 14px;
-  color: #fff;
+  margin-left: 20px;
+  font-size: 16px;
+  font-weight: 600px;
+  color: black;
 }
-.overlay {
+/* .overlay {
   position: relative;
   display: block;
   overflow: hidden;
@@ -77,9 +101,9 @@
 .castItem:focus .overlay {
   transform: translateY(0);
   background-color: rgba(0, 0, 0, 0.7);
-}
+} */
 
-.info {
+/* .info {
   position: absolute;
   align-items: center;
   padding: 40px 10px;
@@ -95,7 +119,7 @@
   opacity: 1;
   transform: translateY(0);
   background-color: rgba(0, 0, 0, 0.7);
-}
+} */
 
 .loadMore {
   display: flex;
@@ -111,4 +135,11 @@
   border-radius: 30px;
   color: #fff;
   cursor: pointer;
+}
+.overlay {
+  display: flex;
+  height: inherit;
+}
+.info {
+  width: 100%;
 }

@@ -1,0 +1,24 @@
+.footer {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  background: #f9f9f9;
+  border-top: 1px solid rgba(199, 199, 199, 0.5);
+}
+
+.footer_text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.77;
+  text-align: center;
+
+  color: rgb(34, 34, 34);
+}
+
+.curren_-rights {
+  margin: 0 5px;
+}

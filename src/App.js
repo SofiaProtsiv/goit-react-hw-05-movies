@@ -21,24 +21,22 @@ export default function App() {
   return (
     <>
       <Navigation />
-      <Container>
-        <Suspense fallback={<LoaderComponent />}>
-          <Switch>
-            <Route path="/" exact>
-              <HomePage />
-            </Route>
+      <Suspense fallback={<LoaderComponent />}>
+        <Switch>
+          <Route path="/" exact>
+            <HomePage />
+          </Route>
 
-            <Route path="/movies" exact>
-              <MoviesPage />
-            </Route>
+          <Route path="/movies" exact>
+            <MoviesPage />
+          </Route>
 
-            <Route path="/movies/:movieID">
-              <MovieDetailsPage />
-            </Route>
-          </Switch>
-        </Suspense>
-        <ToastContainer />
-      </Container>
+          <Route path="/movies/:movieID">
+            <MovieDetailsPage />
+          </Route>
+        </Switch>
+      </Suspense>
+      <ToastContainer />
     </>
   );
 }
